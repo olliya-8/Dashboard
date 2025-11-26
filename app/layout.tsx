@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   // <CHANGE> Updated title and description for dashboard app
   title: "Software House Management Dashboard",
   description: "Professional dashboard for managing software house projects and teams",
-  generator: "v0.app",
   icons: {
     icon: [
       {
