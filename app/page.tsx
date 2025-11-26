@@ -34,7 +34,7 @@ function HomeContent() {
           {currentPage === "Calendar" && <CalendarPage />}
           {currentPage === "Vacations" && <VacationsPage />}
           {currentPage === "Employees" && <EmployeesPage />}
-          {currentPage === "Messenger" && <MessengerPage />}
+          /* {currentPage === "Messenger" && <MessengerPage />} */
           {currentPage === "Info Portal" && <InfoPortalPage />}
         </main>
       </div>
