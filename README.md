@@ -1,6 +1,6 @@
 # Software house dashboard
 
-[![Deployed on Vercel](https://software-house-dashboard.vercel.app)](https://software-house-dashboard.vercel.app/)
+Deployed at: **[https://software-house-dashboard.vercel.app](https://software-house-dashboard.vercel.app)**
 
 ## Overview
 
