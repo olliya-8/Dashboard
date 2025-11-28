@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { useUser, type User } from "@/components/user-context"
-import BGV from "@/assets/bgv.png"
-import Image from "next/image"
+import type React from "react";
+import { useState } from "react";
+import { useUser, type User } from "@/components/user-context";
+import BGV from "@/assets/bgv.png";
+import Image from "next/image";
 
 interface LoginPageProps {
-  onLogin: () => void
+  onLogin: () => void;
 }
 
 export default function LoginPage({ onLogin }: LoginPageProps) {
-  const [isSignUp, setIsSignUp] = useState(false)
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [name, setName] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
-  const { setUser } = useUser()
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const { setUser } = useUser();
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
     setTimeout(() => {
       const newUser: User = {
@@ -29,22 +29,24 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
         name: isSignUp ? name : "Evan Yates",
         email: email,
         role: isAdmin ? "admin" : "user",
-      }
-      setUser(newUser)
-      setIsLoading(false)
-      onLogin()
-    }, 1500)
-  }
+      };
+      setUser(newUser);
+      setIsLoading(false);
+      onLogin();
+    }, 1500);
+  };
 
-  // Reusable Social Buttons component
+  // SOCIAL BUTTONS COMPONENT
   const SocialButtons = () => (
-    <div className="bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-6 border border-slate-200">
+    <div className="w-full">
       <div className="relative my-4">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-slate-300"></div>
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="px-2 bg-white rounded-2xl text-slate-600">Or continue with</span>
+          <span className="px-2 bg-white rounded-2xl text-slate-600">
+            Or continue with
+          </span>
         </div>
       </div>
 
@@ -56,15 +58,15 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
         Continue with GitHub
       </button>
     </div>
-  )
+  );
 
   return (
     <div className="min-h-screen font-inter bg-gradient-to-br from-[#F1E3F1] via-[#E8DCE6] to-[#F8D5E6] flex justify-center items-center p-6">
       <div className="w-full max-w-4xl">
 
-        {/* Logo */}
+        {/* LOGO */}
         <div className="text-center mb-8">
-          <Image 
+          <Image
             src={BGV}
             alt="logo"
             style={{ backgroundColor: "transparent" }}
@@ -74,11 +76,13 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
           <p className="text-black text-sm">Project & Finance Management</p>
         </div>
 
-        {/* Two Boxes */}
+        {/* TWO BOXES */}
         <div className="lg:flex lg:gap-6">
 
-          {/* LEFT BOX – Inputs + Sign In */}
-          <div className="bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-6 lg:w-1/2 mb-6 lg:mb-0 border border-slate-200">
+          {/* LEFT BOX */}
+          <div className="bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-6 
+              lg:w-1/2 mb-6 lg:mb-0 border border-slate-200 lg:h-[480px]">
+
             <h2 className="text-2xl font-bold text-slate-900 mb-5 text-center">
               {isSignUp ? "Create Account" : "Welcome Back"}
             </h2>
@@ -86,7 +90,9 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
             <form onSubmit={handleSubmit} className="space-y-4">
               {isSignUp && (
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">
+                    Full Name
+                  </label>
                   <input
                     type="text"
                     value={name}
@@ -141,13 +147,12 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
                     <input type="checkbox" className="w-4 h-4" />
                     <span className="text-sm text-slate-600">Remember me</span>
                   </label>
-                  <a href="#" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                  <a className="text-sm text-blue-600 hover:text-blue-700 font-medium">
                     Forgot password?
                   </a>
                 </div>
               )}
 
-              {/* Sign In Button */}
               <button
                 type="submit"
                 disabled={isLoading}
@@ -158,23 +163,26 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
             </form>
           </div>
 
-          {/* RIGHT BOX – Social Buttons (lg only) */}
+          {/* RIGHT BOX */}
           <div className="hidden lg:block lg:w-1/2">
+            <div className="bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-6 
+                border border-slate-200 lg:h-[480px]">
+              <SocialButtons />
+            </div>
+          </div>
+        </div>
+
+        {/* SOCIAL BUTTONS FOR SMALL SCREENS */}
+        <div className="lg:hidden mt-5">
+          <div className="bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-6 border border-slate-200">
             <SocialButtons />
           </div>
-
         </div>
 
-        {/* SM & MD social buttons below form */}
-        <div className="lg:hidden mt-5">
-          <SocialButtons />
-        </div>
-
-        {/* Toggle Sign In / Sign Up */}
+        {/* SWITCH SIGN IN / SIGN UP */}
         <p className="text-center text-slate-600 text-sm mt-4">
           {isSignUp ? "Already have an account?" : "Don't have an account?"}
           <button
-            type="button"
             onClick={() => setIsSignUp(!isSignUp)}
             className="text-blue-600 hover:text-blue-700 font-semibold ml-1"
           >
@@ -182,12 +190,12 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
           </button>
         </p>
 
-        {/* Footer */}
+        {/* FOOTER */}
         <p className="text-center text-black text-xs mt-6">
           Privacy Policy • Terms • Contact
         </p>
 
       </div>
     </div>
-  )
+  );
 }
